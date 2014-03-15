@@ -9,6 +9,7 @@ gem 'mysql2'
 
 gem 'capistrano-ext'
 gem 'capistrano', '2.13.5'
+gem 'rvm-capistrano'
 
 gem 'therubyracer'
 
