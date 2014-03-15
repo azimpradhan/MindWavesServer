@@ -3,7 +3,7 @@ require "bundler/capistrano"
 require 'capistrano/ext/multistage'
 set :rvm_type, :system
 set :application, "MindWavesServer"
-set :repository,  "git@bitbucket.org:azimpradhan/wonderhomes.git"
+set :repository,  "git@github.com:azimpradhan/MindWavesServer.git"
 set :scm_passphrase, ""
 set :scm, :git
 set :use_sudo, false
@@ -18,7 +18,7 @@ set :user, "deploy"
 
 #set :deploy_to, "/var/www/sites/azimpradhan.com/"
 set :stages, ["staging", "production"]
-set :default_stage, "staging"
+set :default_stage, "production"
 after "deploy", "deploy:migrate"
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
