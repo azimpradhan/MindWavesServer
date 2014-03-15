@@ -8,7 +8,7 @@ gem 'rails', '3.2.3'
 gem 'mysql2'
 
 gem 'capistrano-ext'
-gem 'capistrano'
+gem 'capistrano', '2.13.5'
 
 gem 'therubyracer'
 
