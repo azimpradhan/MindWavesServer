@@ -8,29 +8,49 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
 development:
-  adapter: postgresql
+  adapter: mysql2
   encoding: utf8
-  database: mindwaves_development
+  reconnect: false
+  database: MindWavesServer_development
   pool: 5
-  host: localhost
-  username: postgres
+  username: root
+  password:
+  socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
+  adapter: mysql2
   encoding: utf8
-  database: mindwaves_test
+  reconnect: false
+  database: MindWavesServer_test
   pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+
+staging:
   host: localhost
-  username: postgres
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: MindWavesServer_production
+  pool: 5
+  username: azimpradhan
+  password: gkmk3rjj
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: mindwaves_production
-  pool: 5
   host: localhost
-  username: postgres
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: MindWavesServer_production
+  pool: 5
+  username: azimpradhan
+  password: gkmk3rjj
+  socket: /var/run/mysqld/mysqld.sock
