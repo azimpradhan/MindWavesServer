@@ -1,13 +1,6 @@
 class UserController < ApplicationController
   require 'fileutils'
 
-  def index
-    users = User.all
-    render :json => users
-
-  end
-
-
 
   def create
     puts "post request was made!"
@@ -30,9 +23,36 @@ class UserController < ApplicationController
     render :nothing => true
   end
 
-  def show
-    user = User.find_by_udid(params[:id])
-    render :json => user
+  def refresh_with_new_users
+    current_user = User.find_by_udid(params[:udid])
+    if !current_user.nil?
+      users_viewed = current_user.users_viewed
+      new_users = (User.all - users_viewed) - [current_user]
+      new_users.push(users_viewed)
+      new_users.flatten!
+      new_users.unshift(current_user)
+    else
+      new_users = User.all
+    end
+    puts new_users[0..4].inspect
+    render :json => new_users[0..4]
+  end
+
+  def record_view
+    puts params
+    source_user = User.find_by_udid(params[:source_udid])
+    dest_user = User.find_by_udid(params[:dest_udid])
+
+
+    if (source_user.nil? or dest_user.nil?)
+      #error code
+      render :nothing => true, :status => 403
+    end
+    puts dest_user.inspect
+    u_v = UserView.where(:source_user_id => source_user.id, :dest_user_id => dest_user.id).first_or_create
+    u_v.updated_at = DateTime.now
+    u_v.save!
+    render :nothing => true
   end
 
 

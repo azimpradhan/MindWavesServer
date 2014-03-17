@@ -2,7 +2,9 @@ MindWavesServer::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :user
+  post '/user/' => 'user#create'
+  post '/user/refresh_with_new_users' => 'user#refresh_with_new_users'
+  post '/user/record_view' => 'user#record_view'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

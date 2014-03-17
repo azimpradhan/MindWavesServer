@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140313183916) do
+ActiveRecord::Schema.define(:version => 20140317022723) do
+
+  create_table "user_views", :force => true do |t|
+    t.integer  "source_user_id"
+    t.integer  "dest_user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.integer  "avatar_id"
