@@ -32,10 +32,10 @@ class UserController < ApplicationController
       new_users.flatten!
       new_users.unshift(current_user)
     else
-      new_users = User.all
+      new_users = User.all[0..2]
     end
-    puts new_users[0..4].inspect
-    render :json => new_users[0..4]
+    puts new_users[0..3].inspect
+    render :json => new_users[0..3]
   end
 
   def record_view
